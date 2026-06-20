@@ -90,8 +90,63 @@
           <input type="text" class="search-input" id="search-input-field" placeholder="영화 제목 또는 감독 검색...">
         </div>
 
+        <div style="margin: -5px 0 15px 0; display: flex; justify-content: flex-end;">
+          <button class="btn btn-small" id="btn-show-add-movie" style="padding: 8px 14px; font-size: 0.8rem; background: rgba(236, 72, 153, 0.15); border: 1px solid var(--color-purple); border-radius: 12px; cursor: pointer; color: var(--text-primary); transition: var(--transition-smooth);">
+            + 나만의 영화 추가
+          </button>
+        </div>
+
         <div class="movie-grid" id="movie-list-grid">
           <!-- 동적으로 영화 카드가 들어오는 곳 -->
+        </div>
+      </section>
+
+      <!-- ================= 2-2. 영화 추가 뷰 ================= -->
+      <section id="view-add-movie" class="view-panel">
+        <div class="glass-card" style="margin-bottom: 20px;">
+          <h3 class="card-title" style="margin-bottom: 15px;">나만의 성찰 영화 등록</h3>
+          <p class="card-desc" style="margin-bottom: 20px;">영화를 통해 새로운 시선을 남기고 AI 성찰 인터뷰를 설계해 보세요.</p>
+          
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label style="display:block; font-size:0.8rem; margin-bottom:4px; color:var(--text-secondary);">영화 제목 *</label>
+            <input type="text" id="add-movie-title" class="search-input" style="padding:10px; width:100%; border-radius:12px;" placeholder="예: 오펜하이머">
+          </div>
+          <div class="form-row" style="display:flex; gap:10px; margin-bottom: 12px;">
+            <div style="flex:1;">
+              <label style="display:block; font-size:0.8rem; margin-bottom:4px; color:var(--text-secondary);">감독 *</label>
+              <input type="text" id="add-movie-director" class="search-input" style="padding:10px; width:100%; border-radius:12px;" placeholder="예: 크리스토퍼 놀란">
+            </div>
+            <div style="flex:1;">
+              <label style="display:block; font-size:0.8rem; margin-bottom:4px; color:var(--text-secondary);">개봉년도 *</label>
+              <input type="number" id="add-movie-year" class="search-input" style="padding:10px; width:100%; border-radius:12px;" placeholder="예: 2023">
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label style="display:block; font-size:0.8rem; margin-bottom:4px; color:var(--text-secondary);">장르 (쉼표로 구분) *</label>
+            <input type="text" id="add-movie-genre" class="search-input" style="padding:10px; width:100%; border-radius:12px;" placeholder="예: 드라마, 역사, SF">
+          </div>
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label style="display:block; font-size:0.8rem; margin-bottom:4px; color:var(--text-secondary);">영화 줄거리 *</label>
+            <textarea id="add-movie-plot" class="search-input" style="padding:10px; width:100%; height:80px; border-radius:12px; font-family:inherit; resize:none;" placeholder="간략한 줄거리를 적어주세요."></textarea>
+          </div>
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label style="display:block; font-size:0.8rem; margin-bottom:4px; color:var(--text-secondary);">포스터 이미지 URL (선택)</label>
+            <input type="text" id="add-movie-poster" class="search-input" style="padding:10px; width:100%; border-radius:12px;" placeholder="https://images.unsplash.com/...">
+          </div>
+          
+          <h4 style="font-size:0.9rem; margin: 20px 0 10px 0; color:var(--color-rose);">1단계 AI 성찰 질문 설계 (3개)</h4>
+          <p class="card-desc" style="margin-bottom: 12px;">사용자에게 깊은 가치관 성찰을 이끌어낼 세 가지 질문을 던집니다.</p>
+          <div class="form-group" style="margin-bottom: 8px;">
+            <input type="text" id="add-movie-q1" class="search-input" style="padding:10px; width:100%; border-radius:12px;" placeholder="질문 1: 세상을 구하기 위해 파괴적인 도구를 만드는 것의 모순에 대해 어떻게 보나요?">
+          </div>
+          <div class="form-group" style="margin-bottom: 8px;">
+            <input type="text" id="add-movie-q2" class="search-input" style="padding:10px; width:100%; border-radius:12px;" placeholder="질문 2: 과학자의 연구 윤리는 국가 권력 아래 통제되어야 할까요?">
+          </div>
+          <div class="form-group" style="margin-bottom: 15px;">
+            <input type="text" id="add-movie-q3" class="search-input" style="padding:10px; width:100%; border-radius:12px;" placeholder="질문 3: 자신이 만든 피조물의 역사적 결과에 대해 어느정도 책임을 져야 할까요?">
+          </div>
+          
+          <button class="btn btn-primary btn-block" id="btn-save-new-movie">영화 등록하기</button>
         </div>
       </section>
 
