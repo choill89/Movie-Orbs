@@ -2,7 +2,8 @@
 // Movie Orbs - 핵심 비즈니스 로직 및 렌더링
 // ==========================================
 
-// --- 1. let MOVIES = [
+// --- 1. 영화 데이터베이스 (Mock DB) ---
+const MOVIES = [
   {
     id: "parasite",
     title: "기생충",
@@ -70,147 +71,7 @@
     questions: [
       "열차의 설계자 윌포드는 생태계의 평형과 전체 생존을 위해 강제적인 인구 조절(학살)이 필연적이라고 주장합니다. 이 극단적인 공리주의에 동의하시나요?",
       "앞칸을 장악하여 지배권을 교체하려는 커티스의 혁명과, 열차의 문을 부수고 통제 시스템 밖의 혹한의 대지로 나가려던 남궁민수의 저항 중 어떤 관점이 더 미래 지향적일까요?",
-      "영화 속 꼬리칸 and 머리칸의 갈등을 보며, 현대 우리 사회의 자본주의 구조적 시스템과 가장 닮아있다고 느낀 요소는 무엇인가요?"
-    ]
-  },
-  {
-    id: "oppenheimer",
-    title: "오펜하이머",
-    director: "크리스토퍼 놀란",
-    year: "2023",
-    genre: ["드라마", "역사", "인문학"],
-    poster: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=400",
-    plot: "세상을 구하기 위해 세상을 파괴할 지도 모르는 선택을 해야 하는 천재 과학자 오펜하이머. 제2차 세계대전 중 미국 극비 원자폭탄 개발 계획인 맨해튼 프로젝트를 이끄는 그의 갈등과 고뇌가 그려진다.",
-    questions: [
-      "인류의 안녕을 지킨다는 대의명분을 위해 가공할 만한 대량 살상 무기(원자폭탄)를 개발하는 것은 윤리적으로 용인될 수 있을까요?",
-      "오펜하이머가 전후 수소폭탄 개발을 반대하며 매카시즘 선풍 속에 국가에 배신당하는 장면을 보며, 과학자의 지적 탐구와 사회적 국가 권력 간의 관계는 어떻게 정립되어야 한다고 보시나요?",
-      "폭탄이 히로시마에 투하된 후 오펜하이머가 환희 속에서도 죄책감과 공포에 시달리는 독백을 들을 때, 과학자는 자신의 발명품이 초래한 역사적 결과에 대해 어느 정도까지 책임이 있을까요?"
-    ]
-  },
-  {
-    id: "exhuma",
-    title: "파묘",
-    director: "장재현",
-    year: "2024",
-    genre: ["미스터리", "스릴러", "오컬트"],
-    poster: "https://images.unsplash.com/photo-1536152470836-b943b246224c?auto=format&fit=crop&q=80&w=400",
-    plot: "미국 LA의 유서 깊은 부잣집에 기이한 병이 대물림되자 풍수사 상덕, 장의사 영근, 무당 화림과 봉길은 거액의 의뢰를 받고 한국의 조상 묘를 이장하려 파묘를 감행한다. 하지만 그곳에서 절대 나와서는 안 될 '험한 것'이 세상에 나오게 된다.",
-    questions: [
-      "땅과 무덤, 묫자리라는 보이지 않는 풍수지리적 과거사가 현대 자손들의 삶에까지 깊은 영향을 끼친다는 오컬트적 세계관 속에서, 우리는 우리 조상이나 역사적 과거의 업보로부터 얼마나 자유로울 수 있을까요?",
-      "친일파 가문의 악행과 쇠말뚝으로 대변되는 일제강점기의 억압적 상흔을 파헤치는 이 영화의 전개를 보며, 우리 민족의 역사적 한(恨)을 극복하고 치유하는 진정한 방법은 무엇이라고 생각하나요?",
-      "초자연적인 기이한 재앙 앞에서도 물질적인 돈보다 가문의 뿌리와 민족적 도의를 지키기 위해 목숨을 걸고 사투를 벌인 주인공들의 행동에서 가장 크게 와닿았던 정신적 가치는 무엇인가요?"
-    ]
-  },
-  {
-    id: "insideout2",
-    title: "인사이드 아웃 2",
-    director: "켈시 맨",
-    year: "2024",
-    genre: ["애니메이션", "드라마", "심리물"],
-    poster: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=400",
-    plot: "고등학교 진학을 앞둔 라일리의 머릿속 감정 컨트롤 본부. 사춘기를 맞이한 라일리에게 기존의 기쁨, 슬픔, 분노, 까칠, 소심 외에 '불안', '당황', '따분', '부럽'이라는 새로운 감정들이 등장하며 대혼란이 펼쳐진다.",
-    questions: [
-      "새로 등장한 감정인 '불안이(Anxiety)'가 라일리의 미래를 대비한다는 긍정적인 의도로 행동했음에도 결국 라일리를 통제 불능과 공황 상태에 빠뜨린 것을 보며, 현대 사회에서 불안의 순기능과 역기능을 어떻게 다스려야 할까요?",
-      "자아 정체성이 형성되는 과정에서 라일리가 나쁜 기억들을 마음속 깊은 곳으로 던져버리고 좋은 기억으로만 자신을 채우려다 갈등을 겪습니다. 우리 인생에서 부정적인 기억과 실수를 온전히 포용하는 것은 왜 중요할까요?",
-      "영화 후반부 모든 복합적인 감정들이 라일리의 다면적인 자아를 있는 그대로 인정하고 껴안는 장면에서, 스스로에 대한 완벽주의나 콤플렉스를 극복하기 위해 취해야 할 마음가짐은 무엇일까요?"
-    ]
-  },
-  {
-    id: "dune2",
-    title: "듄: 파트 2",
-    director: "드니 빌뇌브",
-    year: "2024",
-    genre: ["SF", "어드벤처", "정치"],
-    poster: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=400",
-    plot: "가문의 멸망 후 사막으로 도망친 폴 아트레이데스는 프레멘 부족과 융합하여 전사 '무아디브'로 거듭난다. 황제와 하코넨 가문을 향한 복수의 여정 속에서, 그는 자신이 은하계 전체를 파멸로 몰고 갈 전쟁의 메시아가 될 것을 직감하고 갈등한다.",
-    questions: [
-      "폴이 복수와 생존을 위해 프레멘 부족의 절대적 믿음(메시아 예언)을 의도적으로 이용하는 장면을 보며, 종교나 신념이 정치적 권력을 획득하기 위한 수단으로 쓰이는 현상에 대해 어떻게 평가하시나요?",
-      "운명에 맞서 전쟁을 막으려 발버둥 쳤지만 결국 파멸적인 전 우주적 성전(Jihad)의 길을 걷게 된 폴의 행보를 보며, 역사적 대세나 구조적 흐름 앞에서 개인의 주체적 의지는 얼마나 힘을 발휘할 수 있을까요?",
-      "메시아로서의 폴을 맹신하는 프레멘 군중들과 달리, 냉정하게 그의 독재성과 맹목적 광기를 비판적으로 바라보는 챠니의 시선을 통해 영웅주의와 메시아주의의 위험성은 무엇이라고 보십니까?"
-    ]
-  },
-  {
-    id: "springofseoul",
-    title: "서울의 봄",
-    director: "김성수",
-    year: "2023",
-    genre: ["드라마", "스릴러", "역사"],
-    poster: "https://images.unsplash.com/photo-1444653389962-8149286c578a?auto=format&fit=crop&q=80&w=400",
-    plot: "1979년 12월 12일 수도 서울. 10.26 사태 이후 정국이 혼란한 틈을 타 신군부 세력의 전두광 보안사령관이 반란을 모의한다. 이에 맞서 수도 경비 사령관 이태신은 목숨을 걸고 반란군 진압을 위해 고군분투하며 일촉즉발의 9시간이 흐른다.",
-    questions: [
-      "국가의 법과 군대의 원칙을 무시하고 사리사욕과 패거리 의식으로 가득 찬 신군부 반란세력이 끝내 성공하는 비극적인 역사를 지켜보며, 우리 사회에서 도덕적 정의란 현실의 힘 논리 앞에서 어떤 방식으로 실현될 수 있을까요?",
-      "전두광의 철저한 권력 장악 야욕과 대조적으로, 이태신 사령관은 패배가 확실시되는 상황에서도 군인으로서의 본분과 헌법적 의무를 다합니다. 결과가 예정된 비극적 상황에서도 개인의 원칙과 신념을 지키는 것은 가치 있는 일일까요?",
-      "영화 후반부 회유와 협박 속에 흔들리며 무기력하게 무너져 내리는 군 내부 지휘부와 정부 관료들의 기회주의적 태도를 보며, 공적인 책임감을 지닌 자들의 책임 회피가 사회 전체에 어떤 재앙을 불러오는지 어떤 생각이 드셨나요?"
-    ]
-  },
-  {
-    id: "barbie",
-    title: "바비",
-    director: "그레타 거윅",
-    year: "2023",
-    genre: ["코미디", "드라마", "여성물"],
-    poster: "https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?auto=format&fit=crop&q=80&w=400",
-    plot: "원하는 무엇이든 될 수 있는 완벽한 핑크빛 세상 '바비랜드'에 살던 바비. 어느 날 갑자기 샤워 물 온도가 차가워지고 발바닥이 평평해지며 '죽음'에 대한 생각을 떠올리는 결함이 생기자, 이를 해결하기 위해 현실 세계로 여정을 떠난다.",
-    questions: [
-      "완벽하고 고통 없는 가상 세계(바비랜드)에서의 안락함을 거부하고, 늙고 병들며 눈물 흘리는 불완전한 진짜 인간이 되기로 결정한 바비의 선택을 보며 실존적인 인간다운 삶이란 무엇이라 생각하나요?",
-      "현실 세계의 가부장제를 바비랜드에 역수입해 '켄랜드'를 세우려는 켄과 바비들의 갈등을 보며, 억압과 지배의 주체만 바뀔 뿐인 이분법적 젠더 갈등을 넘어서는 대안적인 연대란 무엇일까요?",
-      "완벽한 바비 인형이라는 코르셋에서 벗어나 모순적이고 실수투성이인 평범한 나로서의 삶을 긍정하는 바비의 성장담에서 자기 정체성을 확립하기 위한 힌트를 얻으셨나요?"
-    ]
-  },
-  {
-    id: "everythingeverywhere",
-    title: "에브리씽 에브리웨어 올 앳 원스",
-    director: "다니엘 콴, 다니엘 쉐이너트",
-    year: "2022",
-    genre: ["SF", "코미디", "가족물"],
-    poster: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=400",
-    plot: "미국에서 힘겹게 세탁소를 운영하며 세금 문제와 가족 갈등에 짓눌려 살던 에블린. 남편의 다른 우주 인격(웨이먼드)으로부터 멀티버스의 붕괴를 막을 유일한 인물임을 전해 듣고, 상상도 못 했던 무한한 다중우주를 넘나들게 된다.",
-    questions: [
-      "무한한 멀티버스가 존재하며 나의 모든 선택이 또 다른 세계를 만들어낸다는 이론 앞에서 허무주의에 빠진 딸 조이(조부 투파키)의 입장과, 그럼에도 현재 우주의 평범한 일상이 소중하다고 믿는 에블린의 생각 중 어느 쪽에 공감하시나요?",
-      "남편 웨이먼드가 싸움과 혼돈의 순간에 총칼 대신 '친절함'을 무기로 들고 '다정함을 베풀어 줘. 특히 뭐가 뭔지 모를 때는 더더욱'이라고 말하는 태도에서, 이 냉혹한 세상을 헤쳐 나가는 태도에 대해 어떤 철학적 통찰을 얻으셨나요?",
-      "다양한 세상을 누비며 자신이 성공한 최고의 모습을 목격했음에도, 가장 보잘것없고 망가진 현실의 세탁소 아줌마로서 남편과 딸과 살아가기로 선택한 에블린의 결정은 어떤 인간관을 보여주고 있습니까?"
-    ]
-  },
-  {
-    id: "elemental",
-    title: "엘리멘탈",
-    director: "피터 손",
-    year: "2023",
-    genre: ["애니메이션", "로맨스", "가족물"],
-    poster: "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&q=80&w=400",
-    plot: "불, 물, 공기, 흙 4가지 원소가 살아가고 있는 엘리멘트 시티. 파이어타운을 벗어난 적 없는 불의 원소 아가씨 앰버는 우연히 수로를 통해 흘러들어온 감수성 풍부하고 긍정적인 물의 원소 웨이드를 만나게 되고, 서로 섞일 수 없는 두 존재는 깊은 유대를 쌓는다.",
-    questions: [
-      "불과 물이라는 절대 섞일 수 없는 극단적인 상성의 존재들이 서로의 온도로 증발되거나 꺼지지 않으며 사랑을 이루어내는 과정을 보며, 우리 사회의 혐오와 문화적 장벽을 극복하는 관계란 어떻게 가능한지 느낀 점은 무엇인가요?",
-      "이민 1세대로서 고생하며 파이어타운을 일궈낸 아버지의 희생에 보답하기 위해 자신의 꿈(미술/유리공예)을 접어두고 가게를 이어받으려 압박감을 가졌던 앰버의 갈등을 보며, 부모에 대한 감사와 자아실현 간의 적절한 균형점은 어디일까요?",
-      "어려움 속에서도 앰버의 불을 밝게 비춰주고 그녀의 진가를 흔들림 없이 믿어준 웨이드의 무조건적인 지지와 사랑의 유대를 경험할 때, 진정으로 타인의 성장을 돕는 타인관이란 무엇일까요?"
-    ]
-  },
-  {
-    id: "guardians3",
-    title: "가디언즈 오브 갤럭시: Volume 3",
-    director: "제임스 건",
-    year: "2023",
-    genre: ["SF", "액션", "가족물"],
-    poster: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=400",
-    plot: "위기에 처한 멤버 로켓의 목숨을 구하기 위해 다시 한번 뭉친 가디언즈 팀. 로켓을 불법 실험한 완벽주의 창조주 '하이 에볼루셔너리'에 맞서 싸우며 로켓의 잔인했던 과거와 상처, 그리고 진정한 가족의 소중함을 마주하게 된다.",
-    questions: [
-      "이상적인 유토피아와 완벽한 피조물(뉴 어스)을 만들겠다는 명분으로 하등 생물(로켓 등)에게 끔찍한 생체 실험을 강행하는 창조주 '하이 에볼루셔너리'의 오만한 완벽주의를 통해, 전체주의적 발전의 한계에 대해 어떻게 성찰하셨나요?",
-      "하이 에볼루셔너리가 완벽을 위해 결함 있는 피조물들을 서슴지 않고 학살하는 행위와 대비하여, 상처투성이에 불완전한 아웃사이더들이 뭉친 가오갤 멤버들이 서로의 상처를 보듬고 가족이 되는 모습에서 사회적 연대의 가치를 어떻게 발견할 수 있을까요?",
-      "자신의 과거 상처를 부정하던 로켓이 결국 실험체 번호(89P13)가 아닌 스스로의 존재를 받아들이며 '내 이름은 로켓 라쿤이다'라고 정체성을 선언하는 장면이 주는 삶의 주체적 선언의 의미는 무엇일까요?"
-    ]
-  },
-  {
-    id: "spiderverse2",
-    title: "스파이더맨: 어크로스 더 유니버스",
-    director: "호아킴 도스 산토스, 켐프 파워스, 저스틴 K. 톰슨",
-    year: "2023",
-    genre: ["애니메이션", "SF", "액션"],
-    poster: "https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&q=80&w=400",
-    plot: "평범한 청소년 마일스 모랄레스는 스파이더맨으로서의 삶을 살아가다 차원 이동기를 타고 수많은 평행우주의 스파이더맨들이 모인 멀티버스 본부로 가게 된다. 그곳에서 모든 스파이더맨이 겪어야만 하는 '캐논 이벤트(정해진 비극적 운명)'가 존재함을 알게 되고, 소중한 아버지를 구하기 위해 모든 차원의 스파이더맨에 맞서 도망친다.",
-    questions: [
-      "한 명의 소중한 사람(아버지)을 구하기 위해, 멀티버스 전체의 안정과 다수의 생명을 위험에 빠뜨리는 선택을 감행하려는 마일스의 결단은 윤리적 관점(의무론 vs 공리주의)에서 어떻게 해석되어야 할까요?",
-      "모든 평행우주의 스파이더맨들이 '운명에 굴복하여 가까운 사람을 잃는 아픔을 겪어야만 진짜 스파이더맨이 된다'고 순응할 때, 혼자서 그 규칙을 거부하고 나만의 운명을 쓰겠다고 선언하는 마일스의 행보가 주는 주체적인 삶의 메시지는 무엇일까요?",
-      "이타적인 영웅의 상징인 스파이더맨 군단이 차원의 안정을 수호한다는 대의 아래 마일스를 집단으로 사냥하듯 쫓는 모순을 보며, 목적의 정당성이 수단의 폭력성을 어디까지 정당화할 수 있는가에 대해 어떤 생각이 드셨나요?"
+      "영화 속 꼬리칸과 머리칸의 갈등을 보며, 현대 우리 사회의 자본주의 구조적 시스템과 가장 닮아있다고 느낀 요소는 무엇인가요?"
     ]
   }
 ];
@@ -260,17 +121,6 @@ function loadUserData() {
       }
     ];
     saveUserData();
-  }
-
-  // 사용자 정의 추가 영화 로드 및 병합
-  const storedCustom = localStorage.getItem("movie_orbs_custom_movies");
-  if (storedCustom) {
-    const customMovies = JSON.parse(storedCustom);
-    customMovies.forEach(cm => {
-      if (!MOVIES.some(m => m.id === cm.id)) {
-        MOVIES.push(cm);
-      }
-    });
   }
 }
 
@@ -356,81 +206,6 @@ function initApp() {
   document.getElementById("btn-close-modal").addEventListener("click", () => {
     document.getElementById("orb-detail-modal").style.display = "none";
   });
-
-  // 영화 추가 화면 이동 버튼
-  const btnShowAddMovie = document.getElementById("btn-show-add-movie");
-  if (btnShowAddMovie) {
-    btnShowAddMovie.addEventListener("click", () => {
-      switchView("add-movie");
-    });
-  }
-
-  // 신규 영화 등록 버튼 클릭 이벤트
-  const btnSaveNewMovie = document.getElementById("btn-save-new-movie");
-  if (btnSaveNewMovie) {
-    btnSaveNewMovie.addEventListener("click", () => {
-      const title = document.getElementById("add-movie-title").value.trim();
-      const director = document.getElementById("add-movie-director").value.trim();
-      const year = document.getElementById("add-movie-year").value.trim();
-      const genreInput = document.getElementById("add-movie-genre").value.trim();
-      const plot = document.getElementById("add-movie-plot").value.trim();
-      const poster = document.getElementById("add-movie-poster").value.trim() || "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&q=80&w=400";
-      const q1 = document.getElementById("add-movie-q1").value.trim();
-      const q2 = document.getElementById("add-movie-q2").value.trim();
-      const q3 = document.getElementById("add-movie-q3").value.trim();
-
-      if (!title || !director || !year || !genreInput || !plot) {
-        alert("필수 항목(*)을 모두 입력해 주세요.");
-        return;
-      }
-
-      if (!q1 || !q2 || !q3) {
-        alert("AI 성찰 질문 3개를 모두 작성해 주세요.");
-        return;
-      }
-
-      const genres = genreInput.split(",").map(g => g.trim()).filter(Boolean);
-      const newMovieId = "custom_" + Date.now();
-
-      const newMovie = {
-        id: newMovieId,
-        title: title,
-        director: director,
-        year: year,
-        genre: genres,
-        poster: poster,
-        plot: plot,
-        questions: [q1, q2, q3]
-      };
-
-      // 로컬 스토리지에 저장
-      let customMovies = [];
-      const storedCustom = localStorage.getItem("movie_orbs_custom_movies");
-      if (storedCustom) {
-        customMovies = JSON.parse(storedCustom);
-      }
-      customMovies.push(newMovie);
-      localStorage.setItem("movie_orbs_custom_movies", JSON.stringify(customMovies));
-
-      // 메모리 내 배열에 바로 반영
-      MOVIES.push(newMovie);
-
-      alert("영화가 정상적으로 등록되었습니다!");
-      
-      // 입력 필드 초기화
-      document.getElementById("add-movie-title").value = "";
-      document.getElementById("add-movie-director").value = "";
-      document.getElementById("add-movie-year").value = "";
-      document.getElementById("add-movie-genre").value = "";
-      document.getElementById("add-movie-plot").value = "";
-      document.getElementById("add-movie-poster").value = "";
-      document.getElementById("add-movie-q1").value = "";
-      document.getElementById("add-movie-q2").value = "";
-      document.getElementById("add-movie-q3").value = "";
-
-      switchView("search");
-    });
-  }
 }
 
 // 뷰 전환
@@ -463,7 +238,7 @@ function switchView(viewName) {
 
   // 뒤로가기 버튼 노출 조건 (특정 서브뷰에 있을 때만 노출)
   const backBtn = document.getElementById("btn-back");
-  if (["movie-detail", "interview", "report", "debate-room", "add-movie"].includes(viewName)) {
+  if (["movie-detail", "interview", "report", "debate-room"].includes(viewName)) {
     backBtn.style.display = "flex";
   } else {
     backBtn.style.display = "none";
@@ -493,8 +268,6 @@ function handleBackNavigation() {
     switchView("archive");
   } else if (state.currentView === "debate-room") {
     switchView("debate");
-  } else if (state.currentView === "add-movie") {
-    switchView("search");
   }
 }
 
