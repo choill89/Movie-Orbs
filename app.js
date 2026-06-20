@@ -358,73 +358,79 @@ function initApp() {
   });
 
   // 영화 추가 화면 이동 버튼
-  document.getElementById("btn-show-add-movie").addEventListener("click", () => {
-    switchView("add-movie");
-  });
+  const btnShowAddMovie = document.getElementById("btn-show-add-movie");
+  if (btnShowAddMovie) {
+    btnShowAddMovie.addEventListener("click", () => {
+      switchView("add-movie");
+    });
+  }
 
   // 신규 영화 등록 버튼 클릭 이벤트
-  document.getElementById("btn-save-new-movie").addEventListener("click", () => {
-    const title = document.getElementById("add-movie-title").value.trim();
-    const director = document.getElementById("add-movie-director").value.trim();
-    const year = document.getElementById("add-movie-year").value.trim();
-    const genreInput = document.getElementById("add-movie-genre").value.trim();
-    const plot = document.getElementById("add-movie-plot").value.trim();
-    const poster = document.getElementById("add-movie-poster").value.trim() || "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&q=80&w=400";
-    const q1 = document.getElementById("add-movie-q1").value.trim();
-    const q2 = document.getElementById("add-movie-q2").value.trim();
-    const q3 = document.getElementById("add-movie-q3").value.trim();
+  const btnSaveNewMovie = document.getElementById("btn-save-new-movie");
+  if (btnSaveNewMovie) {
+    btnSaveNewMovie.addEventListener("click", () => {
+      const title = document.getElementById("add-movie-title").value.trim();
+      const director = document.getElementById("add-movie-director").value.trim();
+      const year = document.getElementById("add-movie-year").value.trim();
+      const genreInput = document.getElementById("add-movie-genre").value.trim();
+      const plot = document.getElementById("add-movie-plot").value.trim();
+      const poster = document.getElementById("add-movie-poster").value.trim() || "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&q=80&w=400";
+      const q1 = document.getElementById("add-movie-q1").value.trim();
+      const q2 = document.getElementById("add-movie-q2").value.trim();
+      const q3 = document.getElementById("add-movie-q3").value.trim();
 
-    if (!title || !director || !year || !genreInput || !plot) {
-      alert("필수 항목(*)을 모두 입력해 주세요.");
-      return;
-    }
+      if (!title || !director || !year || !genreInput || !plot) {
+        alert("필수 항목(*)을 모두 입력해 주세요.");
+        return;
+      }
 
-    if (!q1 || !q2 || !q3) {
-      alert("AI 성찰 질문 3개를 모두 작성해 주세요.");
-      return;
-    }
+      if (!q1 || !q2 || !q3) {
+        alert("AI 성찰 질문 3개를 모두 작성해 주세요.");
+        return;
+      }
 
-    const genres = genreInput.split(",").map(g => g.trim()).filter(Boolean);
-    const newMovieId = "custom_" + Date.now();
+      const genres = genreInput.split(",").map(g => g.trim()).filter(Boolean);
+      const newMovieId = "custom_" + Date.now();
 
-    const newMovie = {
-      id: newMovieId,
-      title: title,
-      director: director,
-      year: year,
-      genre: genres,
-      poster: poster,
-      plot: plot,
-      questions: [q1, q2, q3]
-    };
+      const newMovie = {
+        id: newMovieId,
+        title: title,
+        director: director,
+        year: year,
+        genre: genres,
+        poster: poster,
+        plot: plot,
+        questions: [q1, q2, q3]
+      };
 
-    // 로컬 스토리지에 저장
-    let customMovies = [];
-    const storedCustom = localStorage.getItem("movie_orbs_custom_movies");
-    if (storedCustom) {
-      customMovies = JSON.parse(storedCustom);
-    }
-    customMovies.push(newMovie);
-    localStorage.setItem("movie_orbs_custom_movies", JSON.stringify(customMovies));
+      // 로컬 스토리지에 저장
+      let customMovies = [];
+      const storedCustom = localStorage.getItem("movie_orbs_custom_movies");
+      if (storedCustom) {
+        customMovies = JSON.parse(storedCustom);
+      }
+      customMovies.push(newMovie);
+      localStorage.setItem("movie_orbs_custom_movies", JSON.stringify(customMovies));
 
-    // 메모리 내 배열에 바로 반영
-    MOVIES.push(newMovie);
+      // 메모리 내 배열에 바로 반영
+      MOVIES.push(newMovie);
 
-    alert("영화가 정상적으로 등록되었습니다!");
-    
-    // 입력 필드 초기화
-    document.getElementById("add-movie-title").value = "";
-    document.getElementById("add-movie-director").value = "";
-    document.getElementById("add-movie-year").value = "";
-    document.getElementById("add-movie-genre").value = "";
-    document.getElementById("add-movie-plot").value = "";
-    document.getElementById("add-movie-poster").value = "";
-    document.getElementById("add-movie-q1").value = "";
-    document.getElementById("add-movie-q2").value = "";
-    document.getElementById("add-movie-q3").value = "";
+      alert("영화가 정상적으로 등록되었습니다!");
+      
+      // 입력 필드 초기화
+      document.getElementById("add-movie-title").value = "";
+      document.getElementById("add-movie-director").value = "";
+      document.getElementById("add-movie-year").value = "";
+      document.getElementById("add-movie-genre").value = "";
+      document.getElementById("add-movie-plot").value = "";
+      document.getElementById("add-movie-poster").value = "";
+      document.getElementById("add-movie-q1").value = "";
+      document.getElementById("add-movie-q2").value = "";
+      document.getElementById("add-movie-q3").value = "";
 
-    switchView("search");
-  });
+      switchView("search");
+    });
+  }
 }
 
 // 뷰 전환
